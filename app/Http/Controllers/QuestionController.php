@@ -1,22 +1,20 @@
 <?php
 
+
 namespace App\Http\Controllers;
+
 
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+
+class QuestionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data = [
-          'username'        => 'Nabil',
-          'last_login'      => date('Y-m-d H:i:s'),
-          'list_pendidikan' => ['SD', 'SMP', 'SMA', 'S1', 'S2', 'S3']
-      ];
-      return view('home', $data);
+     return view ('home-question-respon');
     }
 
     /**
@@ -27,13 +25,32 @@ class HomeController extends Controller
         //
     }
 
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+    'nama'      => 'required|max:10',
+    'email'     => ['required', 'email'],
+    'pertanyaan' => 'required|max:300|min:8',
+    ], 
+    [
+    'nama.required' => 'Nama tidak boleh kosong',
+    'email.email'   => 'Email Tidak valid'
+    ]);
+      //dd($request->all());
+      $data['nama']       = $request->nama;
+    $data['email']      = $request->email;
+    $data['pertanyaan'] = $request->pertanyaan;
+
+
+//return view('home-question-respon', $data);
+return redirect() -> route ('question.index') -> with('info','data berhasil dikirim');
+
+}
+
 
     /**
      * Display the specified resource.
@@ -43,6 +60,7 @@ class HomeController extends Controller
         //
     }
 
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -51,6 +69,7 @@ class HomeController extends Controller
         //
     }
 
+
     /**
      * Update the specified resource in storage.
      */
@@ -58,6 +77,7 @@ class HomeController extends Controller
     {
         //
     }
+
 
     /**
      * Remove the specified resource from storage.

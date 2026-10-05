@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,47 +9,9 @@
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
+     <link rel="stylesheet" href="{{ asset('assets/css/custom-style.css') }}">
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-        }
-
-        .navbar-brand {
-            font-weight: bold;
-        }
-
-        .navbar {
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .hero-section {
-            background-color: #3187e9;
-            color: white;
-            padding: 50px 0;
-            text-align: center;
-        }
-
-        .hero-section h1 {
-            font-size: 3rem;
-        }
-
-        .card {
-            margin-top: 30px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .footer {
-            margin-top: 50px;
-            padding: 20px 0;
-            background-color: #f8f9fa;
-            text-align: center;
-        }
-
-        .footer p {
-            margin: 0;
-            font-size: 0.9rem;
-            color: #6c757d;
-        }
+     
     </style>
 </head>
 
@@ -56,7 +19,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="#">My Laravel App</a>
+            <a class="navbar-brand font-custom" href="#">My Laravel App</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -79,13 +42,17 @@
         </div>
     </nav>
 
+
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
+        <img src="{{ asset('assets/images/Logo-UIR.png') }}" alt="Logo-UIR.png">   
             <h1 class="display-6 mb-2">Welcome Aboard!</h1>
+            <p> {{$username}}</p>
             <p class="lead mb-0">A simple and elegant app using Bootstrap 5 and Laravel Blade.</p>
         </div>
     </section>
+
 
     <!-- Content Section -->
     <section id="content" class="container ">
@@ -99,6 +66,7 @@
                         <a href="#" class="btn btn-primary">Explore More</a>
                     </div>
                 </div>
+
 
                 <!-- Accordion -->
                 <div class="accordion" id="accordionExample">
@@ -128,6 +96,7 @@
                     </div>
                 </div>
 
+
                 {{-- Badge, List & Card --}}
                 <div class="card">
                     <div class="card-body">
@@ -152,7 +121,31 @@
                 </div>
             </div>
 
+
             <div class="col-md-6">
+                <div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Form Pertanyaan</h5>
+
+
+        <form action="{{ route('question.store') }}" method="POST">
+            @csrf
+            <div class="mb-3">
+                <label for="nama" class="form-label">Nama</label>
+                <input type="text" class="form-control" name = "nama" >
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="text" class="form-control" name ="email">
+            </div>
+            <div class="mb-3">
+                <label for="pertanyaan" class="form-label">Pertanyaan</label>
+                <textarea class="form-control" rows="4" name ="pertanyaan"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Kirim Pertanyaan</button>
+        </form>
+    </div>
+</div>
                 {{-- Alerts --}}
                 <div class="card ">
                     <div class="card-body">
@@ -163,6 +156,7 @@
                         <div class="alert alert-danger mb-0">Danger alert</div>
                     </div>
                 </div>
+
 
                 {{-- Buttons --}}
                 <div class="card">
@@ -177,6 +171,7 @@
                         </div>
                     </div>
                 </div>
+
 
                 {{-- Table --}}
                 <div class="card">
@@ -221,6 +216,7 @@
         </div>
     </section>
 
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -228,8 +224,10 @@
         </div>
     </footer>
 
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 
 </html>
